@@ -57,7 +57,7 @@ if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor(args.num_threads) as executor:  # 24 threads
         for fasta_file in os.listdir(args.input_fasta):
             print(f'Processing {fasta_file}')
-            makelogo(args.input_fasta+fasta_file, args.outdir)
+            executor.submit(makelogo,args.input_fasta+fasta_file, args.outdir)
             print(f'Finished {fasta_file}')
 
     finish = time.perf_counter()
